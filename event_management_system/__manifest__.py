@@ -27,8 +27,6 @@
         "views/sponsor_agreement_form.xml",
         "views/participated_list_form.xml",
         "views/sponsor_views_tree.xml",
-
-
         "views/event_views_kanban.xml",
         "views/sponsor_views_kanban.xml",
         "views/participant_views_kanban.xml",
