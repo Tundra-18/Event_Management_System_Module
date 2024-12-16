@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="sponsor_agreement_form" model="ir.ui.view">
+            <field name="name">sponsor.agreement.form</field>
+            <field name="model">sponsor.agreement</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                        <!-- Button: Done (Visible only in 'draft' state) -->
+                        <button type="object"
+                                name="action_done"
+                                string="Done"
+                                class="oe_highlight"
+                                invisible="state != 'draft'"/>
+                        <!-- Button: Mark as Draft (Visible in 'done', 'confirm', and 'cancel' states) -->
+                        <button type="object"
+                                name="action_draft"
+                                string="Mark as Draft"
+                                invisible="state not in ('done', 'confirm', 'cancel')"/>
+                        <!-- Button: Confirm (Visible only in 'done' state) -->
+                        <button type="object"
+                                name="action_confirm"
+                                string="Confirm"
+                                class="oe_highlight"
+                                invisible="state != 'done'"/>
+                        <!-- Button: Cancel (Visible in 'done' and 'confirm' states) -->
+                        <button type="object"
+                                name="action_cancel"
+                                string="Cancel"
+                                class="oe_highlight"
+                                invisible="state not in ('done', 'confirm')"/>
+                    </header>
+                    <sheet>
+                        <div>
+                            <group string="Sponsorship Agreement">
+                                <group>
+                                    <field name="event_id" readonly="state in ['confirm', 'cancel']"/>
+                                    <field name="sponsor_id" readonly="state in ['confirm', 'cancel']"/>
+                                    <field name="sponsor_level" string="Sponsor Level"/>
+                                    <field name="sponsor_amount_contributed"/>
+                                </group>
+                                <group>
+                                    <field name="agreed_date" readonly="state in ['confirm', 'cancel']"/>
+                                    <field name="contract" readonly="state in ['confirm', 'cancel']"/>
+                                    <field name="payment_status"
+                                           readonly="state in ['confirm', 'cancel']"
+                                           invisible="sponsor_level == 'bronze'"
+                                           required="sponsor_level != 'bronze'"/>
+                                    <field name="is_agree" readonly="state in ['confirm', 'cancel']"/>
+                                </group>
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

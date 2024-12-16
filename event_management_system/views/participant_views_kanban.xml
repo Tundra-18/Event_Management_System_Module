@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="participant_views_kanban" model="ir.ui.view">
+            <field name="name">participant.views.kanban</field>
+            <field name="model">event.participants</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="id"/>
+                    <field name="image"/>
+                    <field name="name"/>
+                    <field name="age"/>
+                    <field name="gender"/>
+                    <field name="nrc"/>
+                    <field name="phone"/>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_card custom-kanban-card">
+                                <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('event.participants', 'image', record.id.raw_value)"
+                                         t-att-alt="record.name.value"
+                                         t-att-title="record.name.value"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong><field name="name"/></strong><br/>
+                                    <span t-if="record.gender">Gender : <t t-esc="record.gender.value"/></span><br/>
+                                    <span t-if="record.age">Age : <t t-esc="record.age.value"/></span><br/>
+                                    <span t-if="record.nrc">NRC: <t t-esc="record.nrc.value"/></span><br/>
+                                    <span t-if="record.phone">Phone : <t t-esc="record.phone.value"/></span><br/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </kanban>
+            </field>
+        </record>
+    </data>
+</odoo>

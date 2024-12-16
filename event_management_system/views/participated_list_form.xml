@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="participated_list_form" model="ir.ui.view">
+            <field name="name">participated.list.form</field>
+            <field name="model">participated.list</field>
+            <field name="arch" type="xml">
+                <form string="Participated List Form">
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                        <!-- Button: Done (Visible only in 'draft' state) -->
+                        <button type="object"
+                                name="action_done"
+                                string="Done"
+                                class="oe_highlight"
+                                invisible="state != 'draft'"/>
+                        <!-- Button: Mark as Draft (Visible in 'done', 'confirm', and 'cancel' states) -->
+                        <button type="object"
+                                name="action_draft"
+                                string="Mark as Draft"
+                                invisible="state not in ('done', 'confirm', 'cancel')"/>
+                        <!-- Button: Confirm (Visible only in 'done' state) -->
+                        <button type="object"
+                                name="action_confirm"
+                                string="Confirm"
+                                class="oe_highlight"
+                                invisible="state != 'done'"/>
+                        <!-- Button: Cancel (Visible in 'done' and 'confirm' states) -->
+                        <button type="object"
+                                name="action_cancel"
+                                string="Cancel"
+                                class="oe_highlight"
+                                invisible="state not in ('done', 'confirm')"/>
+                    </header>
+                    <sheet>
+                        <div>
+                            <group string="Participant Registration">
+                                <group>
+                                    <field name="event_id"/>
+                                    <field name="participant_id"/>
+                                    <field name="reg_date"/>
+                                </group>
+                                <group>
+                                    <field name="participant_fees"/>
+                                    <field name="payment_status"
+                                           invisible="participant_fees == 0"
+                                           required="participant_fees != 0"/>
+                                    <field name="is_agree"/>
+                                </group>
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

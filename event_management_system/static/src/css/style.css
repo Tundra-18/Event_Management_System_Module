@@ -1,0 +1,26 @@
+.custom-header {
+    background-color: lightblue;
+    color: black;
+    padding: 10px;
+    font-weight: bold;
+
+}
+
+.o_list_renderer .o_list_table thead {
+    background-color: lightblue;
+}
+
+.o_form_view .o_horizontal_separator{
+    background-color: lightblue;
+    color: black;
+    padding: 10px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.custom-kanban-card {
+    background-color: lightblue;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="sponsor_views_tree" model="ir.ui.view">
+            <field name="name">sponsor.views.tree</field>
+            <field name="model">event.sponsor</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="image" widget="image" options="{'size':[20,20]}" nolabel="0"/>
+                    <field name="name" optional="show"/>
+                    <field name="website" optional="hide"/>
+                    <field name="level" optional="show"/>
+                    <field name="contact_person" optional="show"/>
+                    <field name="phone" optional="show"/>
+                    <field name="email" optional="show"/>
+                    <field name="amount_contributed" optional="show"/>
+                    <field name="address" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

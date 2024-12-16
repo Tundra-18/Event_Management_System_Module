@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="participant_views_tree" model="ir.ui.view">
+            <field name="name">participant.views.tree</field>
+            <field name="model">event.participants</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="image" widget="image" options="{'size':[20,20]}" nolabel="0"/>
+                    <field name="name" optional="show"/>
+                    <field name="age" optional="hide"/>
+                    <field name="gender" optional="show"/>
+                    <field name="nrc" optional="hide"/>
+                    <field name="email" optional="show"/>
+                    <field name="phone" optional="show"/>
+                    <field name="address" optional="show"/>
+                    <field name="reg_date" optional="show"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="sponsor_form" model="ir.ui.view">
+            <field name="name">sponsor.form</field>
+            <field name="model">event.sponsor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                        <!-- Button: Done (Visible only in 'draft' state) -->
+                        <button type="object"
+                                name="action_done"
+                                string="Done"
+                                class="oe_highlight"
+                                invisible="state != 'draft'"/>
+                        <!-- Button: Mark as Draft (Visible in 'done', 'confirm', and 'cancel' states) -->
+                        <button type="object"
+                                name="action_draft"
+                                string="Mark as Draft"
+                                invisible="state not in ('done', 'confirm', 'cancel')"/>
+                        <!-- Button: Confirm (Visible only in 'done' state) -->
+                        <button type="object"
+                                name="action_confirm"
+                                string="Confirm"
+                                class="oe_highlight"
+                                invisible="state != 'done'"/>
+                        <!-- Button: Cancel (Visible in 'done' and 'confirm' states) -->
+                        <button type="object"
+                                name="action_cancel"
+                                string="Cancel"
+                                class="oe_highlight"
+                                invisible="state not in ('done', 'confirm')"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="action"
+                                    name="%(action_agreement_line)d"
+                                    class="oe_stat_button"
+                                    icon="fa-history">
+                                Sponsorship History
+                            </button>
+                        </div>
+                        <div>
+                            <field name="image" class="oe_avatar" widget="image"/>
+                            <div class="oe_title">
+                                <label for="name" class="oe_edit_only"/>
+                                <h1>
+                                    <field name="name"
+                                           placeholder="eg. Royal-D"
+                                           readonly="state in ['confirm', 'done', 'cancel']"/>
+                                </h1><br/>
+                            </div>
+                        </div>
+                        <div>
+                            <group string="Sponsorship Info">
+                                <group>
+                                    <field name="reg_date"
+                                           readonly="state in ['confirm', 'done', 'cancel']"/>
+                                    <field name="website"
+                                           readonly="state in ['confirm', 'cancel']"/>
+                                </group>
+                                <group>
+                                    <field name="level"
+                                           readonly="state in ['confirm', 'done', 'cancel']"/>
+                                    <field name="amount_contributed"
+                                           widget="monetary"
+                                           options="{'currency_field': 'currency_id'}"
+                                           invisible="level == 'bronze'"
+                                           required="level != 'bronze'"
+                                           readonly="state in ['confirm', 'cancel']"/>
+                                    <field name="currency_id" invisible="1"/>
+                                </group>
+                            </group>
+                            <group string="Contact Info">
+                                <group>
+                                    <field name="contact_person"
+                                           readonly="state in ['confirm', 'cancel']"/>
+                                    <field name="phone"
+                                           placeholder="09-xxx-xxx-xxx"
+                                           widget="char"
+                                           readonly="state in ['confirm', 'cancel']"/>
+                                    <field name="email"
+                                           placeholder="example@gmail.com"
+                                           readonly="state in ['confirm', 'cancel']"/>
+                                    <field name="address"
+                                           readonly="state in ['confirm', 'cancel']"/>
+                                </group>
+                            </group>
+                            <group string="Miscellaneous">
+                                <group>
+                                    <field name="support"
+                                           placeholder="Non-monetary contributions, if any..."
+                                           rows="3"
+                                           readonly="state in ['confirm', 'cancel']"/>
+                                    <field name="note"
+                                           placeholder="Other notes..."
+                                           rows="3"
+                                           readonly="state in ['confirm', 'cancel']"/>
+                                </group>
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

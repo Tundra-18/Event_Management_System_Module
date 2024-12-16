@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="event_form" model="ir.ui.view">
+            <field name="name">event.form</field>
+            <field name="model">event.management</field>
+            <field name="arch" type="xml">
+                <form string="Event Form">
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                        <!-- Button: Done (Visible only in 'draft' state) -->
+                        <button type="object"
+                                name="action_done"
+                                id="button_done"
+                                string="Done"
+                                class="oe_highlight"
+                                invisible="state != 'draft'"/>
+                        <!-- Button: Mark as Draft (Visible in 'done', 'confirm', and 'cancel' states) -->
+                        <button type="object"
+                                name="action_draft"
+                                string="Mark as Draft"
+                                invisible="state not in ('done', 'confirm', 'cancel')"/>
+                        <!-- Button: Confirm (Visible only in 'done' state) -->
+                        <button type="object"
+                                name="action_confirm"
+                                string="Confirm"
+                                class="oe_highlight"
+                                invisible="state != 'done'"/>
+                        <!-- Button: Cancel (Visible in 'done' and 'confirm' states) -->
+                        <button type="object"
+                                name="action_cancel"
+                                string="Cancel"
+                                class="oe_highlight"
+                                invisible="state not in ('done', 'confirm')"/>
+                    </header>
+                    <sheet>
+                            <div>
+                                <field name="image" widget="image" class="oe_avatar"/>
+                                <div class="oe_title">
+                                    <label for="name" class="oe_edit_only"/>
+                                    <h1>
+                                        <field name="name"
+                                               placeholder="eg. Development Workshop"
+                                               readonly="state in ['confirm', 'done', 'cancel']"/>
+                                    </h1><br/>
+                                </div>
+                            </div>
+                            <div>
+                                <group string="Event Info">
+                                    <group>
+                                        <field name="event_type"
+                                               readonly="state in ['confirm', 'done', 'cancel']"/>
+                                        <field name="host"
+                                               placeholder="Host name"
+                                               readonly="state in ['confirm', 'cancel']"/>
+                                        <field name="max_person"
+                                               widget="char"
+                                               readonly="state in ['confirm', 'cancel']"/>
+                                    </group>
+                                    <group>
+                                        <field name="website"
+                                               placeholder="https://www.xxx.com/"
+                                               readonly="state in ['confirm', 'cancel']"/>
+                                        <field name="hotline"
+                                               placeholder="09-xxx-xxx-xxx"
+                                               widget="char"
+                                               readonly="state in ['confirm', 'cancel']"/>
+                                        <field name="event_description"
+                                               placeholder="About event!"
+                                               readonly="state in ['confirm', 'cancel']"/>
+                                    </group>
+                                </group>
+                                <group string="Schedule and Place">
+                                    <group>
+                                        <field name="event_date"
+                                               widget="date"
+                                               readonly="state in ['confirm', 'done', 'cancel']"/>
+                                        <field name="start_time"
+                                               widget="time"
+                                               placeholder="Example: 1:00 PM"
+                                               readonly="state in ['confirm', 'cancel']"/>
+                                    </group>
+                                    <group>
+                                        <field name="duration"
+                                               placeholder="Example: 2:30 Hrs"
+                                               readonly="state in ['confirm', 'cancel']"/>
+                                        <field name="location"
+                                               placeholder="Event's location"
+                                               readonly="state in ['confirm', 'cancel']"/>
+                                    </group>
+                                </group>
+                            </div>
+                            <div>
+                                <group string="Payment Info">
+                                    <group>
+                                        <field name="fees"
+                                               widget="radio"
+                                               readonly="state in ['done', 'confirm', 'cancel']"/>
+                                    </group>
+                                    <group>
+                                        <field name="amount"
+                                               widget="monetary"
+                                               options="{'currency_field': 'currency_id'}"
+                                               invisible="fees != 'charged'"
+                                               readonly="state in ['confirm', 'cancel']"/>
+                                        <field name="currency_id"
+                                               invisible="1"
+                                               readonly="state in ['confirm', 'cancel']"/>
+                                        <field name="payment"
+                                               invisible="fees != 'charged'"
+                                               readonly="state in ['confirm', 'cancel']"/>
+                                    </group>
+                                </group>
+                            </div>
+                            <notebook>
+                                <page string="Participants">
+                                    <field name="participated_list_id">
+                                        <tree>
+                                            <field name="participant_image"
+                                                   widget="image"
+                                                   options="{'size':[20,20]}"
+                                                   nolabel="0"
+                                                   optional="show"/>
+                                            <field name="participant_id" string="Name" optional="show"/>
+                                            <field name="participant_nrc" optional="hide"/>
+                                            <field name="participant_age" optional="hide"/>
+                                            <field name="participant_gender" optional="show"/>
+                                            <field name="participant_phone" optional="show"/>
+                                            <field name="participant_email" optional="hide"/>
+                                            <field name="participant_address" optional="hide"/>
+                                            <field name="payment_status" optional="show"/>
+                                            <field name="reg_date"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Sponsors" >
+                                    <field name="agreement_id">
+                                        <tree>
+                                            <field name="sponsor_logo"
+                                                   widget="image"
+                                                   options="{'size':[20,20]}"
+                                                   nolabel="0"
+                                                   optional="show"/>
+                                            <field name="sponsor_id" optional="show"/>
+                                            <field name="sponsor_level" optional="show"/>
+                                            <field name="agreed_date" optional="show"/>
+                                            <field name="payment_status" optional="show"/>
+                                            <field name="sponsor_phone" optional="show"/>
+                                            <field name="sponsor_email" optional="hide"/>
+                                            <field name="sponsor_address" optional="hide"/>
+                                            <field name="sponsor_contact_person" optional="show"/>
+                                            <field name="sponsor_amount_contributed" optional="hide"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="action_participated_list" model="ir.actions.act_window">
+            <field name="name">Participated List</field>
+            <field name="res_model">participated.list</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Make a new Agreement!
+                </p>
+            </field>
+        </record>
+        <menuitem id="root_menu_participated"
+                  name="Participated List"
+                  parent="root_menu_participation"
+                  action="action_participated_list"
+                  sequence="2"/>
+    </data>
+</odoo>

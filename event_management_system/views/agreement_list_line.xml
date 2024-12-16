@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="agreement_list_line_tree" model="ir.ui.view">
+            <field name="name">agreement.list.line.tree</field>
+            <field name="model">sponsor.agreement</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="event_id"/>
+                    <field name="sponsor_id"/>
+                    <field name="agreed_date"/>
+                    <field name="payment_status"/>
+                    <field name="sponsor_amount_contributed"/>
+                </tree>
+            </field>
+        </record>
+        <record id="agreement_list_line_kanban" model="ir.ui.view">
+            <field name="name">agreement.list.line.kanban</field>
+            <field name="model">sponsor.agreement</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="event_id"/>
+                    <field name="sponsor_id"/>
+                    <field name="sponsor_logo"/>
+                    <field name="state"/>
+                    <field name="payment_status"/>
+                    <field name="agreed_date"/>
+                    <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click">
+                        <div class="oe_kanban_card custom-kanban-card">
+                            <div class="o_kanban_image">
+                                <img t-att-src="kanban_image('sponsor.agreement', 'sponsor_logo', record.id.raw_value)"
+                                     t-att-alt="record.sponsor_id.value"
+                                     t-att-title="record.sponsor_id.value"/>
+                                </div>
+                                    <div class="oe_kanban_details">
+                                    <strong><t t-esc="record.sponsor_id.value"/></strong><br/>
+                                    <span t-if="record.event_id">Event: <t t-esc="record.event_id.value"/></span><br/>
+                                    <span t-if="record.payment_status">Payment Status: <t t-esc="record.payment_status.value"/></span><br/>
+
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </kanban>
+            </field>
+        </record>
+        <record id="action_agreement_line" model="ir.actions.act_window">
+            <field name="name">Agreement List Line</field>
+            <field name="res_model">sponsor.agreement</field>
+            <field name="view_mode">tree,kanban</field>
+            <field name="domain">[('sponsor_id', '=', active_id)]</field>
+            <field name="context">{'group_by':['event_id']}</field>
+        </record>
+    </data>
+</odoo>

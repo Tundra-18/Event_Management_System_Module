@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="participated_list_line_tree" model="ir.ui.view">
+            <field name="name">participated.list.line.tree</field>
+            <field name="model">participated.list</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="event_id"/>
+                    <field name="participant_id"/>
+                    <field name="reg_date"/>
+                    <field name="participant_fees"/>
+                </tree>
+            </field>
+        </record>
+        <record id="participated_list_line_kanban" model="ir.ui.view">
+            <field name="name">participated.list.line.kanban</field>
+            <field name="model">participated.list</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="event_id"/>
+                    <field name="participant_id"/>
+                    <field name="participant_image"/>
+                    <field name="state"/>
+                    <field name="payment_status"/>
+                    <field name="reg_date"/>
+                    <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click">
+                        <div class="oe_kanban_card custom-kanban-card">
+                            <div class="o_kanban_image">
+                                <img t-att-src="kanban_image('participated.list', 'participant_image', record.id.raw_value)"
+                                     t-att-alt="record.participant_id.value"
+                                     t-att-title="record.participant_id.value"/>
+                                </div>
+                                    <div class="oe_kanban_details">
+                                    <strong><t t-esc="record.participant_id.value"/></strong><br/>
+                                    <span t-if="record.event_id">Event: <t t-esc="record.event_id.value"/></span><br/>
+                                    <span t-if="record.payment_status">Payment Status: <t t-esc="record.payment_status.value"/></span><br/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </kanban>
+            </field>
+        </record>
+        <record id="action_participated_line" model="ir.actions.act_window">
+            <field name="name">Participated List Line</field>
+            <field name="res_model">participated.list</field>
+            <field name="view_mode">tree,kanban</field>
+            <field name="domain">[('participant_id', '=', active_id)]</field>
+            <field name="context">{'group_by':['event_id']}</field>
+        </record>
+    </data>
+</odoo>

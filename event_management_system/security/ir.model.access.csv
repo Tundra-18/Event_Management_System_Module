@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_event_management_user,event_management_user,model_event_management,base.group_user,1,1,1,1
+
+access_event_participants_user,event_participants_user,model_event_participants,base.group_user,1,1,1,1
+
+access_event_sponsor_user,event_sponsor_user,model_event_sponsor,base.group_user,1,1,1,1
+
+access_sponsor_agreement_user,sponsor_agreement_user,model_sponsor_agreement,base.group_user,1,1,1,1
+
+access_participated_list_user,participated_list_user,model_participated_list,base.group_user,1,1,1,1
+
+access_event_hosts_user,event_hosts_user,model_event_hosts,base.group_user,1,1,1,1
+

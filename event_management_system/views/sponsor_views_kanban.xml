@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="sponsor_views_kanban" model="ir.ui.view">
+            <field name="name">sponsor.views.kanban</field>
+            <field name="model">event.sponsor</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="id"/>
+                    <field name="image"/>
+                    <field name="name"/>
+                    <field name="level"/>
+                    <field name="amount_contributed"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_card custom-kanban-card">
+                                <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('event.sponsor', 'image', record.id.raw_value)"
+                                         t-att-alt="record.name.value"
+                                         t-att-title="record.name.value"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong><field name="name"/></strong><br/>
+                                    <span t-if="record.level">Level : <t t-esc="record.level.value"/></span><br/>
+                                    <span t-if="record.amount_contributed">Amount Contributed : <t t-esc="record.amount_contributed.value"/></span><br/>
+                                    <span t-if="record.phone">Phone : <t t-esc="record.phone.value"/></span><br/>
+                                    <span t-if="record.email">Email : <t t-esc="record.email.value"/></span><br/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </kanban>
+            </field>
+        </record>
+    </data>
+</odoo>

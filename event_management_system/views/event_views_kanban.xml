@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="event_views_kanban" model="ir.ui.view">
+            <field name="name">event.views.kanban</field>
+            <field name="model">event.management</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="id"/>
+                    <field name="image"/>
+                    <field name="name"/>
+                    <field name="event_type"/>
+                    <field name="event_date"/>
+                    <field name="hotline"/>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_card custom-kanban-card">
+                                <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('event.management', 'image', record.id.raw_value)"
+                                         t-att-alt="record.name.value"
+                                         t-att-title="record.name.value"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong><field name="name"/></strong><br/>
+                                    <span t-if="record.event_type">Type : <t t-esc="record.event_type.value"/></span><br/>
+                                    <span t-if="record.event_date">Date : <t t-esc="record.event_date.value"/></span><br/>
+                                    <span t-if="record.hotline">Hotline : <t t-esc="record.hotline.value"/></span><br/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </kanban>
+            </field>
+        </record>
+    </data>
+</odoo>

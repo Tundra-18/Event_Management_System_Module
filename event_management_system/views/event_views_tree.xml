@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="event_views_tree" model="ir.ui.view">
+            <field name="name">event.views.tree</field>
+            <field name="model">event.management</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="image" widget="image" options="{'size':[20,20]}" nolabel="0"/>
+                    <field name="name" optional="show"/>
+                    <field name="event_type" optional="show"/>
+                    <field name="organizer" optional="show"/>
+                    <field name="event_date" optional="hide"/>
+                    <field name="duration" optional="hide"/>
+                    <field name="location" optional="show"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
