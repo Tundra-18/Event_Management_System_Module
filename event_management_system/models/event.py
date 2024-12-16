@@ -9,7 +9,6 @@ class Event(models.Model):
     _table = "events"
 
     image = fields.Binary(string="Event Logo")
-    organizer = fields.Char(string="Organizer", required=True)
     host = fields.Many2one('event.hosts', string="Host Name", required=True)
     name = fields.Char(string="Event Name", required=True)
     event_description = fields.Text(string="Description", help="Tell something about the event!")

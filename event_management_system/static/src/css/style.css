@@ -6,8 +6,8 @@
 
 }
 
-.o_list_renderer .o_list_table thead {
-    background-color: lightblue;
+body .o_list_renderer .o_list_table thead {
+  background-color: lightblue !important;
 }
 
 .o_form_view .o_horizontal_separator{

@@ -15,7 +15,7 @@
                   name="EMS"
                   web_icon="event_management_system,static/description/icon.png"/>
         <menuitem id="first_level_ems"
-                  name="Event Info"
+                  name="Events and Hosts"
                   parent="root_menu_ems"/>
         <menuitem id="root_menu_event"
                   name="Events"
