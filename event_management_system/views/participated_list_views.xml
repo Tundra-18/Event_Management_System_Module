@@ -12,7 +12,7 @@
             </field>
         </record>
         <menuitem id="root_menu_participated"
-                  name="Participated List"
+                  name="Participant Registration"
                   parent="root_menu_participation"
                   action="action_participated_list"
                   sequence="2"/>
