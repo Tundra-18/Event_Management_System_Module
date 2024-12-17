@@ -73,7 +73,7 @@
                                                readonly="state in ['confirm', 'done', 'cancel']"/>
                                         <field name="start_time"
                                                widget="time"
-                                               placeholder="Example: 1:00 PM"
+                                               placeholder="Example: 01:00 PM"
                                                readonly="state in ['confirm', 'cancel']"/>
                                     </group>
                                     <group>
